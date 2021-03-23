@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- librairie JS Jquery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Javascript pour l'execution du Modal -->
+    <script>
+      $(document).ready(function(){
+          $("#exampleModal1").modal('show');
+      });
+  </script>
+    <title>Roof'Pot</title>
+    <link rel="icon" type="image/png" href="img/logo_brouette_light.png" />  
+    <link href="css/styles.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+
+    <!-- Leaflet core CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+    <!-- Lien vers le leaflet.js-->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
+    <!-- Modification à la main -->
+    <link type="text/css" rel="stylesheet" href="https://unpkg.com/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.css" />	
+    <!-- Geocoder -->
+    <link href="css/geocoder.css" rel="stylesheet">
+    <script src="js/geocoder.js"></script> 
+  </head>
+  
+  
+<body>  
+<!-- <img src="img/didacticiel3.png" alt="" width="100%" style="position: absolute; z-index: 99999;"> -->
+<!-- Carrousel du didacticiel -->
+<div id="carou">
+<div id="carouselExampleControls" class="carousel slide carousel-fade" data-bs-ride="carousel" style="position: absolute; z-index: 99999;">
+  <div class="carousel-inner">
+    <button type="button" id="closedidac" class="btn-close btn-close-white" aria-label="Close" style="position: absolute; z-index: 99999;"></button>
+    <div class="carousel-item active">
+      <img src="img/didacticiel3.png" class="d-block w-100" alt="">
+    </div>
+    <div class="carousel-item">
+      <img src="img/didacticiel32.png" class="d-block w-100" alt="">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="prev" id="carouselprev">
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"  data-bs-slide="next" id="carouselnext">
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+</div>
+<!-- barre de navigation entre les cartes  -->
+<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#"><h3 id=titre>Roof'Pot</h3></a>
+  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <!-- Button trigger modal "INTRODUCTION" -->
+<button type="button" id="introduction" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+  Introduction
+</button>
+<button type="button" id="didacopen" class="btn btn-outline-light">
+  <!-- bouton du didacticiel  -->
+  Didacticiel
+</button>
+ <!-- Button trigger modal "QUI SOMES NOUS ? " -->
+ <div class="position-absolute" id="quibutton">
+  <button type="button" id="qui" class="btn btn-outline-light" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+    Qui sommes nous ? 
+  </button>
+</div>
+   <!-- Image en heut à droite de la brouette blanche " -->
+  <img src="img/logo_brouette_light.png" class="rounded mx-auto d-block" width="3%" id="brouettelight">
+</header>
+<!--Side panel avec les Accordions -->
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3" id="flexcol">
+        <ul class="nav flex-column">
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <i class="bi bi-info-circle"></i>&emsp;Roof'Pot, kesako ?
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <img src="img/logo_brouette.png" class="rounded mx-auto d-block" width="100%"><hr><strong>Bienvenue sur l'application Roof'Pot !</strong> <br>Dans cette dernière tu trouvera deux cartographies sur les initiatives existantes en matière de jardins partagés mais aussi sur les potentiels surfaces disponibles pour en créés de nouveaux.<p><strong>Bonne exploration !</strong></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  <i class="bi bi-tools"></i>&emsp;Quelques conseils techniques
+                </button>
+              </h2>
+              <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>Comment concevoir ton jardin ?<br></strong> <b>Etape 1 : Imaginer et dessiner les plans du jardin.</b> Bien organiser son jardin et très important notamment lorsqu'il s'agit de pouvoir se déplacer aisément sur un toit. Il faut également réfléchir à quel public sera destiné le jardin ; les aménagements ne seront pas les mêmes. Choisir le type de culture souhaité en prennant en compte le climat, et les conditions du toit ensoleillement, expostion au vent, surface, pluviométrie, etc ... <br>
+                  <b>Etape 2: Calculer le poids total du potager.</b> Ayez bien à l'esprit que le poids du potager s'allourdira lors de la croissance de vos plantations.<br>
+                  <b>Etape 3: Penser le système d'irrigation.</b> Il est important de réfléchir à l'irrigation du potager mettre à disposition au minima un robinet pour remplir un arrosoir, ou alors concevoir un système d'arrosage automatique en prennant là encore en compte le poids.<br>
+                  <br><b>Instruit "toit":</b><br>
+                  <ul>
+                  <li><a target="_blank" href="https://groof.fr/wp-content/uploads/2019/04/GROOF_Livret_vf.pdf">CRÉER UN POTAGER......<br>SUR UN TOIT !</a></li>
+                  <li><a target="_blank" href="https://ecrivons.angers.fr/uploads/decidim/attachment/file/350/l_agriculture_en_toiture-_web.pdf">RECOMMANDATIONS TECHNIQUES DE <br>L’AGRICULTURE URBAINEEN TOITURE</a></li>
+                  <li><a target="_blank" href="http://www.economie.grandlyon.com/fileadmin/user_upload/fichiers/site_eco/20120110_gl_eaux_pluviales_pro_guide_toitures_vegetalisees.pdf">Préconisation relatives aux toitures végétalisées</a></li>
+                  <li><a target="_blank" href="https://www.strasbourgcapousse.eu/app/uploads/2017/03/BD_TOITURES.pdf">Guide de végétalisation</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                  <i class="bi bi-book"></i>&emsp;Que dit la réglementation ? 
+                </button>
+              </h2>
+              <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>La réglementation.</strong> Il n'y a pas de réglemmentation fixe sur les potagers urbains. Il convient avant tout de se renseigner auprès du syndicat de copropriété de l’immeuble avant de commencer votre projet de potager sur toit. Il faut notamment s’assurer que celui-ci peut supporter le poids de votre jardin, que le toit est bien étanche et qu’il n’y a aucun danger pour vous-mêmes et pour les occupants, etc.
+                  <br><br><b>Instruit "toit":</b><br>
+                  <ul>
+                  <li><a target="_blank" href="https://cdn.paris.fr/paris/2019/07/24/9c8ec8df4039c8587184d7fa4de266e6.pdf">Toutes les étapes pour un projet de qualité</a></li>
+                  <li><a target="_blank" href="http://www.etancheite.com/Files/pub/Fede_N05/FFB_PUBLICATION_7408/6157c827-f2bc-425f-a7b1-3152a98104b7/PJ/RP%20TTV%20ed3%20web.pdf">RÈGLES PROFESSIONNELLES</a></li>
+                </ul>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                  <i class="bi bi-arrow-right-square"></i>&emsp;Lance toi !
+                </button>
+              </h2>
+              <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  <strong>A toi de jouer !</strong> L'application t'as intéressé, et tu souhaites désormais faire ton propre potager ou rejoindre un jardin partagé. Que tu es la main verte ou pas tu peux te lancer. Rejoins dès maintenant une association existante à l'instar <a target="_blank" href="https://www.lepassejardins.fr/">du Passe Jardin</a>, le réseau des jardins partagés d'Auvergne-Rhône-Alpes, ou <a target="_blank" href="https://groof.fr/">GROOTH</a> (Green on the Floor). Ou bien contact tes voisins, ta copropriété pour créer ton propre potager. Avec les potagers sur toits de bons légumes s'invitent chez toi !
+                </div>
+            </div>
+          </div>
+        </div>
+        </ul>
+      </div>
+    </nav>
+    <!--DEBUT DU MAIN -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-2">
+      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-2"></div>
+<!-- Modal d'INTRODUCTION CONTENU -->
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Roof'Pot</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="img/cegeplimoilou-1024x683.jpg" width="100%">
+        <hr>
+        <strong>Bienvenue sur l'application Roof'Pot !</strong> <br> <br>
+        Roof’Pot est une application permettant à un large public d’explorer le monde des jardins partagés. Les utilisateurs bénéficient d’un parcours exploratoire en deux phases. Roof'Pot est un jeu de mot autour du Rooftop qui sont souvent occupé par des bars ou restaurant. Le Roof'Pot est donc Roof le toit, et pot qui fait référence au terme de potager mais aussi de potentiel.
+        <br><br>
+        Premièrement une cartographie sur les initiatives déjà existantes et leurs localisations. Dans un second temps ils pourront explorer les toits <b>plats</b> de la ville de Lyon afin de voir quels sont leurs potentiels pour construire de nouveaux jardins partagés. Cette analyse de potentiel basée sur une méthode de scoring et fournit un outil d’aide à la décision pour des particuliers ou des professionnels soucieux de ramener une production agricole à l’échelle locale et de l’amélioration du confort de vie en ville par végétalisation. 
+        <br>
+        <br>
+        <p><strong>Bonne exploration !</strong></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">C'est parti !</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal QUI SOMMES NOUS CONTENU -->
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Qui sommes nous ?</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Bastien CASTELLO <br>
+        Camille SCHEFFLER <br>
+        Léopold ROBITAILLE <br>
+        Victor DOMEJEAN 
+        <hr>
+        <p style="text-align:center"><img src="img/geonum.png" width="50%"></p>
+       <p style="text-align: center;"><strong>Master GeoNum (Promotion 2019/2021)</strong></p> 
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal d'information sur les jardins-->
+<div class="modal fade" id="ModalJdr" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Les différents types de jardins :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Il y a trois grand type de jardins : partagés, familiaux et d'insertion.</strong>
+          <hr>
+          <strong>Les jardins familiaux : </strong>Les jardins familiaux ou jardins ouvriers, sont « des lotissements de parcelles gérés par une association mis à disposition des jardiniers afin qu’ils en jouissent pour leurs loisirs et les cultivent pour les besoins de leur famille, à l’exclusion de tout usage commercial » (Définition de la Fédération Nationale des Jardins Familiaux). Le terme de jardins familiaux a progressivement remplacé celui de jardins ouvriers. 
+          <br>
+          <br>
+          <strong>Les jardins partagés : </strong>Un jardin partagé est un jardin écologiquement conçu, construit, et cultivé collectivement par les habitants d’un immeuble, d’une structure, d’un quartier ou d’un village.
+          Les projets de jardins partagés comportent tous des valeurs de solidarité, de mixité sociale, de liens généreux avec la terre et les humains, de convivialité et de plaisir.
+          <br>
+          <br>
+          <strong>Les jardins d'insertion : </strong> Il s'agit d'un terrain de 2000 à 3000 m² mis à disposition par une commune, il est cultivé collectivement, il est destiné à des personnes en difficulté de vie, il leur permet de faire une étape de socialisation et de construction de projet de vie ou professionnel, ils cultivent pour leur alimentation familiale.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal de la fiche n1-->
+<div class="modal fade" id="myFicheJardins1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nos fiches jardins :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                <div><h5>Résultat de l'analyse potentiel : </h5></div>
+                <div id="fiche1body"></div>
+                <br>
+                <div style="background-color: teal; border-radius: 10px; padding-inline: 10px;">
+                  <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>Avec cette surface, on peut produire une quantité de légume équivalente aux besoins de :</h5></div>
+                  <div class="row" style="margin-top: -30px; margin-bottom: -30px;">
+                    <div id="nbpersonne1" class="col" style="margin-block: 10px; text-align: right; padding-block: 55px; padding-left: 55px; color: white; font-size: xx-large;"></div><div class="col" style="margin-block: 0px; text-align: left; padding-block: 0px;"><img src="img/manhandup.png" width="80" alt=""></div>
+                </div>
+                <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>NB : La consommation annuelle moyenne de légumes et des 127kg/personne/an.</h5></div>
+                </div>
+                <hr>
+              </div>
+              <br>
+              <br>
+              <div><img src="img/fiche75.jpg" width="1000" alt=""></div>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal de la fiche n2-->
+<div class="modal fade" id="myFicheJardins2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nos fiches jardins :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                <div><h5>Résultat de l'analyse potentiel : </h5></div>
+                <div id="fiche2body"></div>
+                <br>
+                <div style="background-color: teal; border-radius: 10px; padding-inline: 10px;">
+                  <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>Avec cette surface, on peut produire une quantité de légume équivalente aux besoins de :</h5></div>
+                  <div class="row" style="margin-top: -30px; margin-bottom: -30px;">
+                    <div id="nbpersonne2" class="col" style="margin-block: 10px; text-align: right; padding-block: 55px; padding-left: 55px; color: white; font-size: xx-large;"></div><div class="col" style="margin-block: 0px; text-align: left; padding-block: 0px;"><img src="img/manhandup.png" width="80" alt=""></div>
+                </div>
+                <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>NB : La consommation annuelle moyenne de légumes et des 127kg/personne/an.</h5></div>
+                </div>
+                <hr>
+              </div>
+              <br>
+              <br>
+              <div><img src="img/fiche.jpeg" width="1000" alt=""></div>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal de la fiche n3-->
+<div class="modal fade" id="myFicheJardins3" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Nos fiches jardins :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+              <div class="col-md-8">
+                <div><h5>Résultat de l'analyse potentiel : </h5></div>
+                <div id="fiche3body"></div>
+                <br>
+                <div style="background-color: teal; border-radius: 10px; padding-inline: 10px;">
+                  <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>Avec cette surface, on peut produire une quantité de légume équivalente aux besoins de :</h5></div>
+                  <div class="row" style="margin-top: -30px; margin-bottom: -30px;">
+                    <div id="nbpersonne3" class="col" style="margin-block: 10px; text-align: right; padding-block: 55px; padding-left: 55px; color: white; font-size: xx-large;"></div><div class="col" style="margin-block: 0px; text-align: left; padding-block: 0px;"><img src="img/manhandup.png" width="80" alt=""></div>
+                </div>
+                <div style="margin-block: 10px; padding-block: 10px; color: white;"><h5>NB : La consommation annuelle moyenne de légumes et des 127kg/personne/an.</h5></div>
+                </div>
+                <hr>
+              </div>
+              <br>
+              <br>
+              <div><img src="img/fiche50.jpeg" width="1000" alt=""></div>
+          </div>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal d'information sur le roofpotentiel-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Création et pondération du Roof'Potentiel :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Dans cette fenêtre nous vous présenterons des détails concernant la construction du Roof'Potentiel et de sa signification.</strong>
+          <hr>
+          Les paramètres pris en compte sont : <strong>L'exposition</strong>, <strong>la surface, la solidité</strong>et <strong>la pluviométrie</strong>. 
+          <br>
+          <br>
+          Ces paramètres sont reclassifiés selon une méthode des quantiles de 0 à 5 afin d'avoir une échelle commune. Nous avons donc une note sur 20. 
+          <br>
+          Cette note est ensuite rapportée sur 100 et constitue notre Roof'Potentiel initiale. 
+          <br>
+          <br>
+          Il est possible de faire varier ce Roof'Potentiel sur la surface sélectionnée grâce aux boutons variateurs. Ils permettent de modifier la pondération de chaque critère du Roof'Potentiel. 
+          <br>
+          <br>
+          Il est possible de mettre en avant les critères en leur donnant une pondération supérieure à 1 ou de les inhiber en leur donnant une pondération de 0.5 ou de les annuler par un 0.
+          <br>
+          Le bouton <strong>Valider</strong> permet de lancer votre nouvelle pondération. Le bouton <strong>Réinitialiser</strong> permet de remettre tous les critères avec une pondération de 1.   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal d'information sur la comparaison-->
+<div class="modal fade" id="ModalComp" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Mode comparaison des toits plats :</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <strong>Dans cette fenêtre nous vous présenterons des détails concernant la comparaison des toits plats.</strong>
+          <hr>
+          Les paramètres pris en compte sont : <strong>Le roof'potentiel</strong>, <strong>la surface, l'ensoleillement </strong>et <strong>le type de propriété du toit</strong>. 
+          <br>
+          <br>
+          Pour commencer à comparer des toits plats entre eux, selectionne les depuis la carte en cliquant simplement dessus et observe leurs différences. Pour déselectionner un toit clique à nouveau dessus.
+          <br>
+          Tu peux ajouter autant de toit à la comparaison que tu le souhaites. Les toits sont identifiés par un numéro, tu peux retrouver ce numéro en posant ta souris sur un toit.
+          <br>
+          <br>
+          Pour déselectionner tous les toits appuie sur le bouton sous le tableau.
+          <br>
+          Pour quitter le mode comparaison et revenir à une visualisation toit par toit, clique sur le bouton "Quitter le mode comparaison" mais avant selectionne au moins un toit histoire de tater un peu l'outil ;). 
+          <br>
+          <br>
+          Une moyenne des différentes variables est proposée. Bonne découverte ! 
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Barre de navigation entre les deux cartes -->
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><h6>Les Initiatives Existantes</h6></a>
+          <a class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"><h6>Les Potentialités de Potagers</h6></a>
+        </div>
+      </nav>
+      <!--Contenu des barres de navigation avec les deux cartes -->
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1"></div>
+            <!--CARTE 1 -->
+            <div class="alert alert-light alert-dismissible fade show" role="alert" id="myAlert">
+              <div style="text-align: center;">
+              <h4><span style="text-align: right;"><i class="bi bi-arrow-up-square"></i></span></h4></div>Explorer maintenant les potentialités de potager partagés</a>.
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <input type="hidden" name="type" id="btntype" />
+            <div id="map1">
+              <div id="legend">
+                <img src="img/interrogation.png" alt="" id="legendlogo" href="#">
+              </div>
+              <div id="myLegend" class="sidelegend">
+                <button id="infoJdr" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalJdr">
+                  i
+                </button>  
+                <div id="legendcontent">
+                <img src="img/Icone_Jardins_Familiaux.png" width="40" alt="">
+                <h6>Jardins familiaux </h6>
+                <div class="form-check form-switch" style="padding-left: 55px;">
+                  <input class="form-check-input" type="checkbox" name="fltjardins" value="jardins familiaux" checked="true">
+                </div>
+                <img src="img/Icone_Jardins_Partages.png" width="40" alt="">
+                <h6>Jardins partagés</h6>
+                <div class="form-check form-switch" style="padding-left: 55px;">
+                  <input class="form-check-input" type="checkbox" name="fltjardins" value="jardins partagés" checked="true">
+                </div>
+                <img src="img/Icone_Jardins_Insertion.png" width="40" alt="">
+                <h6>Jardins d'insertion</h6>
+                <div class="form-check form-switch" style="padding-left: 55px;">
+                  <input class="form-check-input" type="checkbox" name="fltjardins" value="jardins insertion" checked="true">
+                </div>
+                <a href="javascript:void(0)" class="closebtn" onclick="closeLeg()">&times;</a>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-1 pb-1 mb-1"></div>
+            <!--CARTE 2 -->
+              <div id="map2">
+                <div id="comparaisonlogo">
+                  <img src="img/balance.png" alt="" id="comparaisonLogoImg" href="#">
+                </div>
+                <div id ="filter">
+                  <img src="img/filter.png" alt="" id="filterlogo" href="#">
+                </div>
+                <!-- Panneau de filtre des toits -->
+                <div id="PotFilter" class="sidefilter">
+                  <div id="filtercontent">
+                    <h5>Filtrer les toits :</h5>
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeFlt()">&times;</a>
+                    <div class="container-fluid" id="form">
+                      <form id="form">
+                          <label for="exampleInputPassword1" class="form-label"><h6>Surface minimale du toit en m² :</h6></label>
+                          <input type="number" class="form-control" id="inputform">
+                          <br>
+                        <hr>
+                        <label for="exampleInputPassword1" class="form-label"><h6>Résultat du Roof'Potentiel :</h6></label>
+                          <input type="range" name="scoringInput" id="scoringInputId" value="0" min="0" max="100" oninput="scoringOutputId.value = scoringInputId.value">
+                          <output name="scoringOutput" id="scoringOutputId">0</output>
+                        <hr>
+                        <label for="exampleInputPassword1" class="form-label"><h6>Propriété :</h6></label>
+                        <select class="form-select" aria-label="Default select example" id="propinput">
+                          <option selected>...</option>
+                          <option value="privé">privé</option>
+                          <option value="public">public</option>
+                        </select>
+                        <br>
+                        <div class="d-grid gap-2 d-md-block"></div>
+                        <button type="submit" class="btn btn-outline-success btn-sm" id="validateform">Valider</button>
+                        <br>
+                        <br>
+                        <button type="submit" class="btn btn-outline-danger btn-sm" id="reinitialiserform">Réinitialiser </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <!-- Panneau de comparaison des toits  -->
+                <div id="Comp" class="sidecomp">
+                  <div id="compcontent">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeComp()">&times;</a>
+                    <div class="container-fluid" id="8"></div>
+                    <form>
+                      <div class="form-group">
+                      <label style="font-size: 12px;">Toits plats sélectionnés:</label>
+                      <label style="font-size: 12px;" id="selectedCount">0</label>
+                      </div>
+                      
+                    </form>
+                    <h5>Sélectionnez des toits plats à comparer entre eux en cliquant sur la carte 
+                      <button id="infoscoring" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#ModalComp">
+                        i
+                      </button>  
+                    <br></h5>
+               
+                    <table class="table" id="tablecomp" >
+                      <thead class="table-success">
+                        <tr>
+                          <th scope="col">Toit n°</th>
+                          <th scope="col">Roof'potentiel <br> (sur 100)</th>
+                          <th scope="col">Surface <br> en m²</th>
+                          <th scope="col">Ensoleillement <br> en KWh/m²</th>
+                          <th scope="col">Propriété</th>
+                        </tr>
+                      </thead>
+                      <tbody id="display" >
+                      </tbody>
+                      <tbody id="moyenne" class="table-secondary">
+                        <tr>
+                          <th scope="row">Moyenne</th>
+                          <td></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                    <div class="d-grid gap-2 d-md-block">
+                      <button class="btn btn-outline-success btn-sm" type="button" id="zero">Désélectionner les toits</button>
+                      <button class="btn btn-outline-danger btn-sm" type="button" id="fin">Quitter le mode comparaison
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <!-- Panneau principal sur les toits et leurs roofpotentiels -->
+                <div class="container-fluid" id="2">
+                  <div id="mySidepanel" class="sidepanel">
+                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" id="closesidepanel">&times;</a>
+                    <div id="titreA"><h5>Potentiel du toit :</h5></div>
+                      <div class="container-fluid" id="5"></div>
+                      <div style="text-align: center; "><strong>Roof'Potentiel :</strong></div>
+                      <div id="chartJS">
+                        <canvas id="myChart" height="60"></canvas>
+                        <canvas id="myChart3" height="60"></canvas>
+                      </div>
+                      <div class="container-fluid" id="6"><hr></div>
+                      <div style="text-align: center;"><strong>Contibution des critères :</strong></div>
+                      <div id="chartJSscoring" style="padding: 0px; padding-right: 5px;">
+                        <canvas id="myChart2"></canvas>
+                      </div>
+                      <div class="container-fluid" id="10">
+                      <hr>
+                      <div style="text-align: center; "><strong>Ajuste tes critères :</strong>
+                        <!-- Button trigger modal d'information sur la construction du roofpotentiel  -->
+                          <button id="infoscoring" type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            i
+                          </button>
+                      </div>
+                      <div>
+                        <div>
+                          <label for="PluvioInput">Pluviométrie :</label>
+                          <br>
+                          <input type="range" name="PluvioInput" id="PluvioInputId" value="1" min="0" max="5" step="0.5" oninput="PluvioOutputId.value = PluvioInputId.value">
+                          <output name="PluvioOutput" id="PluvioOutputId">1</output>
+                        </div>
+                        <div>
+                          <label for="SurfaceInput">Surface :</label>
+                          <br>
+                          <input type="range" name="SurfaceInput" id="SurfaceInputId" value="1" min="0" max="5" step="0.5" oninput="SurfaceOutputId.value = SurfaceInputId.value">
+                          <output name="SurfaceOutput" id="SurfaceOutputId">1</output>
+                        </div>
+                        <div>
+                          <label for="ExpoInput">Ensoleillement:</label>
+                          <br>
+                          <input type="range" name="ExpoInput" id="ExpoInputId" value="1" min="0" max="5" step="0.5" oninput="ExpoOutputId.value = ExpoInputId.value">
+                          <output name="ExpoOutput" id="ExpoOutputId">1</output>
+                        </div>
+                        <div>
+                          <label for="ExpoInput">Solidité:</label>
+                          <br>
+                          <input type="range" name="SoliInput" id="SoliInputId" value="1" min="0" max="5" step="0.5" oninput="SoliOutputId.value = SoliInputId.value">
+                          <output name="SoliOutput" id="SoliOutputId">1</output>
+                        </div>
+                        <br>
+                        <div class="row" style="text-align: center;">
+                          <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-outline-success btn-sm" type="button" id="valideform">Valider</button>
+                            <button class="btn btn-outline-danger btn-sm" type="button" id="renitform">Réinitialiser</button>
+                          </div>
+                        </div>
+                      </div>
+                      <hr>
+                      </div>
+                      <!-- Bouton d'accès aux fiches conseils  -->
+                    <div id="divfiche"> 
+                      <button type="button" id="fiche1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myFicheJardins1">
+                        Notre fiche conseil
+                      </button>
+                      <button type="button" id="fiche2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myFicheJardins2">
+                        Notre fiche conseil
+                      </button>
+                      <button type="button" id="fiche3" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myFicheJardins3">
+                        Notre fiche conseil
+                      </button>
+                    </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+      <!-- lien avec le main.js qui contient les deux cartes -->
+      <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+      <script src='js/leaflet-choropleth/dist/choropleth.js'></script>
+      <script src="js/leaflet-heat.js"></script>
+      <script src='data/arrond.js'></script>
+      <script src='data/jardins.js'></script>
+      <script src='data/toit.js'></script>
+      <script src='js/map1.js'></script>
+      <script src='js/map2.js'></script>
+      <script src='js/tabs.js'></script>
+      <script src="https://unpkg.com/leaflet-sidebar@0.2.0/src/L.Control.Sidebar.js"></script>  
+    </main>
+  </div>
+</div>
+<!-- lien avec les icon et design de bootstrap -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    </body>
+</html>

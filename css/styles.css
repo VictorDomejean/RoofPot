@@ -1,0 +1,538 @@
+* 
+{
+    background-origin: border-box
+    }
+
+   
+    .grid_container{
+display: grid;
+grid-template-columns: 10vw 90vw;
+grid-template-rows: 100vh;
+    }
+  
+/* Feature Overlay */
+  .overlay-container{
+    background-color: rgba(255, 250, 241, 0.89);
+    width: 115px;
+    color: rgb(31, 31, 31);
+    text-align: center;
+    border-radius: 7px;
+    padding: 2px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -80px;
+    font-family: Verdana, Geneva, Tahoma, 'sans-serif';
+    font-size: xx-small;
+  }
+
+  .overlay-container ::after{
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    margin-left: -45px;
+    border-width: 10px;
+    border-style: solid;
+    border-color:  rgba(255, 250, 241, 0.89) transparent transparent transparent;
+  }
+
+  .image{
+    margin: 0.2em;
+    position: relative;
+  }
+
+  .auteur{
+    bottom: 0.5em;
+    position: fixed
+    ;
+  }
+
+  .locate {
+    top: 7em;
+    left: 0.5em;
+  }
+#show.btn.btn-light{
+  margin-right: 4px;
+  position: relative;
+}
+button.btn.btn-primary.collapsed{
+  margin-left: 10px;
+}
+
+button.btn.btn-primary{
+  margin-left: 10px;
+}
+#brouettelight{
+  margin-right: 10px !important;  
+  position: inherit;
+  padding-right: 5px;
+}
+
+#introduction{
+  margin-left: 20px;
+}
+
+#qui{
+  margin-right: 10px !important;  
+  margin-left: auto;
+  position : relative; 
+}
+
+#quibutton{
+  right: 5%;
+  bottom: 19%;
+}
+
+#info {
+  padding: 5px;
+  width: 100%;
+  height: 20px;
+  font-family: "monospace";
+  font-size: 10px;
+}
+
+#myAlert
+{
+  display: none;
+  position: fixed;
+  bottom: 490px;
+  left: 440px;
+  width: 20%;
+  margin: 20px;
+  z-index: 2;
+  opacity: 0.8;
+}
+
+#map1 { height: 585px;
+z-index: 0; }
+
+#map2 { height: 585px;
+  z-index: 0;}
+
+
+/* The sidepanel menu */
+.sidepanel {
+  height: 485px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: absolute; /* Stay in place */
+  z-index: 1000; /* Stay on top */
+  top: 208px;
+  right: 18px;
+  background-color: #ffffff; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: scroll; 
+  padding-top: 10px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  border-radius: 10px;
+  opacity: 1;
+}
+/* The sidepanel links */
+.sidepanel a {
+  padding: 0px 0px 0px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidepanel a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidepanel .closebtn {
+  position: sticky;
+  top: 0px;
+  /* right: -7px; */
+  font-size: 25px;
+  margin-left: 208px;
+  margin-block-end: 0px;
+  margin-top: -32px;
+  z-index: 1000;
+}
+
+/* Style the button that is used to open the sidepanel */
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+#titreA{
+  position: relative;
+  text-align: center;
+}
+
+
+#titre{
+  text-align: center;
+}
+
+#fiche1{
+  font-size: small;
+  padding-block: initial;
+}
+#fiche2{
+  font-size: small;
+  padding-block: initial;
+}
+#fiche3{
+  font-size: small;
+  padding-block: initial;
+}
+
+#divfiche{
+  text-align: center;
+  padding: 5px;
+  padding-left: 50px;
+  margin-block: 10px;
+}
+
+#logo {
+  z-index: 999;
+  position: absolute;
+  top: 129px;
+  left: 10px;
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.2); 
+  background-clip: padding-box;
+  margin-right: 10px;
+}
+#heatmaplogo{
+  width: 30px;
+  padding: 6px; 
+}
+
+#legend {
+  z-index: 999;
+  position: absolute;
+  top: 127px;
+  left: 0px;
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.2); 
+  background-clip: padding-box;
+  margin-left: 10px;
+}
+#legendlogo{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+/* The sidepanel menu */
+.sidelegend {
+  height: 0; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: absolute; /* Stay in place */
+  z-index: 1000; /* Stay on top */
+  top: 126px;
+  left: 9px;
+  background-color: #ffffff; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  border-radius: 10px;
+  opacity: 1;
+  overflow-y: hidden;
+}
+/* The sidepanel links */
+.sidelegend a {
+  padding: 8px 8px 8px 8px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidelegend a:hover {
+  color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.sidelegend .closebtn {
+  position: absolute;
+  top: -13px;
+  right: -3px;
+  font-size: 25px;
+  margin-left: 50px;
+}
+#legendcontent{
+  padding: 2px;
+  padding-top: 5px;
+  text-align: center;
+}
+
+
+#filter {
+  z-index: 999;
+  position: absolute;
+  top: 129px;
+  left: 0px;
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.2); 
+  background-clip: padding-box;
+  margin-left: 10px;
+}
+#filterlogo{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+/* The sidepanel menu */
+.sidefilter {
+  height: 0; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: absolute; /* Stay in place */
+  z-index: 1000; /* Stay on top */
+  top: 170px;
+  left: 9px;
+  background-color: #ffffff; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-top: 0px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  border-radius: 10px;
+  opacity: 1;
+  overflow-y: auto;
+}
+/* The sidepanel links */
+.sidefilter a {
+  padding: 0px 0px 9px 2px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidefilter a:hover {
+  color: #f1f1f1;
+}
+
+.sidefilter .closebtn {
+  text-align: right;
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  font-size: 25px;
+  margin-bottom: -40px;
+  margin-top: 0;
+}
+
+#filtercontent{
+  padding: 5px; 
+  padding-top: 5px;
+  text-align: center;
+}
+
+#comparaisonlogo {
+  z-index: 999;
+  position: absolute;
+  top: 172px;
+  left: 0px;
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.2); 
+  background-clip: padding-box;
+  margin-left: 10px;
+}
+#comparaisonLogoImg{
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+}
+
+/* The sidepanel menu */
+.sidecomp {
+  height: 485px; /* Specify a height */
+  width: 0; /* 0 width - change this with JavaScript */
+  position: absolute; /* Stay in place */
+  z-index: 1000; /* Stay on top */
+  top: 208px;
+  right: 18px;
+  background-color: #ffffff; /* Black*/
+  overflow-x: hidden; /* Disable horizontal scroll */
+  overflow-y: scroll; 
+  padding-top: 10px; /* Place content 60px from the top */
+  transition: 0.5s; /* 0.5 second transition effect to slide in the sidepanel */
+  border-radius: 10px;
+  opacity: 1;
+}
+/* The sidepanel links */
+.sidecomp a {
+  padding: 2px 2px 2px 2px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+/* When you mouse over the navigation links, change their color */
+.sidecomp a:hover {
+  color: #f1f1f1;
+}
+
+.sidecomp .closebtn {
+  text-align: right;
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  font-size: 25px;
+  contain:size;
+}
+
+#compcontent{
+  padding: 5px; 
+  padding-top: 5px;
+  text-align: center;
+}
+
+#infoscoring{
+  padding: 9px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 26px;
+  margin-left: 10px;
+}
+
+#carouselprev{
+  opacity: 0;
+  width: 100px;
+
+}
+#carouselnext{
+  opacity: 0;
+  width: 100px;
+}
+#carou{
+  overflow:hidden; 
+}
+
+#carouselExampleControls{
+  overflow: hidden;
+}
+#closedidac{
+  right: 12px;
+  top: 12px;
+  font-size: xx-large;
+}
+#didacopen{
+  margin-left: 10px;
+}
+
+.legend {
+  color: #555;
+  padding: 6px 8px;
+  font: 12px Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  background: white;
+  background: rgba(255,255,255,0.8);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  margin-left: -366px;
+}
+.legend ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+.legend li {
+  display: inline-block;
+  width: 30px;
+  height: 22px;
+}
+.legend .min {
+  float: left;
+  padding-bottom: 5px;
+}
+.legend .max {
+  /* float: right; */
+  margin-left: 10px;
+  background-clip: padding-box;
+  display: inline-block;
+}
+
+.closeLogo .closebtn {
+  text-align: right;
+  position: sticky;
+  top: 0px;
+  right: 0px;
+  font-size: 25px;
+}
+
+#supcomparaisonlogo {
+  z-index: 999;
+  position: absolute;
+  top: 9px;
+  right: 120px;
+  cursor: pointer;
+  background: #ffffff;
+  border-radius: 5px;
+  border: 2px solid rgba(0,0,0,0.2); 
+  background-clip: padding-box;
+  margin-right: 10px;
+}
+#supcomparaisonLogoImg{
+  width: 44px;
+  padding: 10px; 
+}
+
+#infoJdr{
+  padding: 6px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border-radius: 16px;
+  margin-left: 4px;
+  margin-block: 5px;
+  font-size: x-small;
+}
+#limit1{
+margin-left: 15px;
+background-clip: padding-box;
+display: inline-block;
+}
+
+#limit2{
+margin-left: 15px;
+background-clip: padding-box;
+display: inline-block;
+}
+
+#limit3{
+margin-left: 15px;
+background-clip: padding-box;
+display: inline-block;
+}
+
+#limit4{
+  margin-left: 10px;
+  background-clip: padding-box;
+  display: inline-block;
+  }
+  #limit0{
+    margin-left: 15px;
+    background-clip: padding-box;
+    display: inline-block;
+    }
