@@ -1,7 +1,7 @@
 # Appli_RoofPot
 Codes, ressources et demo de l'application Roof'Pot
 
-live demo ici : https://victordomejean.github.io/roofpot/
+live demo ici : https://victordomejean.github.io/RoofPot/
 
 Dans le répertoire app on trouve les différents élements constituants de l'application. 
 
