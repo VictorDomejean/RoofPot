@@ -1,6 +1,8 @@
 # Appli_RoofPot
 Codes, ressources et demo de l'application Roof'Pot
 
+live demo ici : https://victordomejean.github.io/roofpot/
+
 Dans le répertoire app on trouve les différents élements constituants de l'application. 
 
 * le dossier BDD contenant la base de données au format SQL
